@@ -1,0 +1,186 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 34px;
+}
+
+.card__info {
+    display: flex;
+    flex-direction: row;
+    margin-top: 14px;
+    justify-content: space-between;
+}
+
+.card__title {
+    margin: 0;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-overflow: ellipsis;
+    text-align: start;
+}
+
+.card__duration {
+    margin: 0;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    border-radius: 3px;
+    background-color: #F9F9F9;
+    color: #A0A0A0;
+    height: 18px;
+    width: 52px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.card__container {
+    position: relative;
+}
+
+.card__image:hover {
+    cursor: pointer;
+}
+
+.card__image:hover+.card__button_unsaved {
+    display: block;
+    cursor: pointer;
+}
+
+.card__button_unsaved:hover {
+    cursor: pointer;
+    display: block;
+}
+
+.card__image {
+    max-width: 300px;
+    position: relative;
+    border-radius: 6px;
+}
+
+.card__button_unsaved {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    width: 72px;
+    height: 21px;
+    background-color: #F9F9F9;
+    border-radius: 30px;
+    font-size: 10px;
+    line-height: 21px;
+    display: none;
+}
+
+.card__button_unsaved:before {
+    content: 'Сохранить';
+}
+
+.card__container {
+    position: relative;
+}
+
+.card__button_saved {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 21px;
+    height: 21px;
+    border: none;
+    border-radius: 50%;
+    background-image: url('../../images/save-btn.svg');
+    background-repeat: no-repeat;
+    background-color: #FF4062;
+}
+
+.card__button_saved:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.card__button_remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 21px;
+    height: 21px;
+    background-image: url('../../images/close-btn.svg');
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 50%;
+}
+
+.card__button_remove:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.card__more:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+
+@media screen and (min-width: 768px) {
+
+    .card {
+        margin-bottom: 48px;
+    }
+
+    .card__info {
+        margin-top: 20px;
+    }
+
+    .card__title {
+        font-size: 13px;
+    }
+
+    .card__image {
+        max-width: 339px;
+    }
+
+    .card__button_unsaved {
+        top: 14px;
+        right: 14px;
+    }
+
+    .card__button_saved {
+        top: 14px;
+        right: 14px;
+    }
+
+    .card__button_remove {
+        top: 14px;
+        right: 14px;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+
+    .card {
+        margin-bottom: 58px;
+    }
+
+    .card__info {
+        margin-top: 10px;
+    }
+
+    .card__title {
+        font-size: 13px;
+        margin-left: 12px;
+    }
+
+    .card__image {
+        max-width: 100%;
+    }
+
+    .card__duration {
+        margin-right: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+}

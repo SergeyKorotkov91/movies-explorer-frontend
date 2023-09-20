@@ -1,0 +1,221 @@
+.about-project {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 70px;
+}
+
+.about-project__title {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #000;
+    text-align: left;
+    font-weight: normal;
+}
+
+.about-project__info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.about-project__subtitle {
+    margin: 0;
+    font-size: 18px;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    text-align: start;
+    font-weight: normal;
+    margin-top: 60px;
+    margin-bottom: 16px;
+}
+
+.about-project__subtitle:last-child{
+    margin-top: 60px;
+}
+
+.about-project__description {
+    text-align: start;
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0;
+    margin-bottom: 58px;
+}
+
+.little-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    flex-grow: 100;
+}
+
+.big-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 184px;
+    flex-grow: 184;
+}
+
+.about-project__diagram {
+    display: flex;
+}
+
+.little-column__diagram_black {
+    background-color: #000;
+    color: white;
+    margin: 0;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    font-size: 11px;
+}
+
+.big-column__diagram_gray {
+    background-color: #F2F2F2;
+    margin: 0;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    font-size: 11px;
+}
+
+.little-column__diagram_white {
+    color: #A0A0A0;
+    margin: 0;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 70px;
+    font-size: 11px;
+}
+
+.big-column__diagram_white{
+    color: #A0A0A0;
+    margin: 0;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 70px;
+    font-size: 11px;
+}
+
+@media screen and (min-width: 768px) {
+    .about-project {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 90px;
+    }
+
+    .about-project__title {
+        font-size: 22px;
+        letter-spacing: -0.88px;
+
+        padding-bottom: 23px;
+    }
+
+    .about-project__subtitle {
+        font-size: 20px;
+        letter-spacing: -0.8px;
+        margin-top: 70px;
+        margin-bottom: 22px;
+    }
+
+    .about-project__info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .about-project__item{
+        width: 319px;
+    }
+
+    .about-project__description {
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 92px;
+    }
+
+    .about-project__description:last-of-type {
+        margin-bottom: 92px;
+    }
+
+    .little-column {
+        flex-grow: 140;
+        min-width: 140px;
+    }
+    
+    .big-column {
+        flex-grow: 528;
+        min-width: 528px;
+    }
+
+    .little-column__diagram_black {
+        padding-top: 9px;
+        padding-bottom: 9px;
+        font-size: 14px;
+    }
+    
+    .big-column__diagram_gray {
+        padding-top: 9px;
+        padding-bottom: 9px;
+        font-size: 14px;
+    }
+
+    .big-column__diagram_white{
+        padding-top: 12px;
+        padding-bottom: 90px;
+        font-size: 14px;
+    }
+    
+    .little-column__diagram_white {
+        padding-top: 12px;
+        padding-bottom: 90px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .about-project {
+        padding-left: 70px;
+        padding-right: 70px;
+        padding-top: 110px;
+    }
+
+    .about-project__subtitle {
+        margin-bottom: 26px;
+    }
+
+    .about-project__item{
+        width: 550px;
+    }
+
+    .about-project__description {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 110px;
+    }
+
+    .about-project__description:last-of-type {
+        margin-bottom: 110px;
+    }
+
+    .little-column {
+        flex-grow: 228;
+        min-width: 228px;
+    }
+    
+    .big-column {
+        flex-grow: 912;
+        min-width: 912px;
+    }
+
+    .big-column__diagram_white{
+        padding-bottom: 110px;
+    }
+    
+    .little-column__diagram_white {
+        padding-bottom: 110px;
+    }
+    
+    .about-project__diagram_white {
+        padding-bottom: 110px;
+  
+    }
+}

@@ -1,0 +1,159 @@
+.popup {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 3;
+}
+
+.popup_opened {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.popup__container {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+}
+
+.popup__close-button {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background-image: url(../../images/Group.svg);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-size: cover;
+}
+
+.popup__close-button:hover {
+    opacity: 0.6;
+}
+
+.popup__navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 144px;
+    flex: 1;
+}
+
+.popup__account {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.popup__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.popup__navlink {
+    color: #000;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    padding-bottom: 7px;
+    margin-bottom: 17px;
+}
+
+.popup__navlink:hover {
+    opacity: 0,7;
+    cursor: pointer;
+}
+
+.popup__navlink_active {
+    transition: 0.4s;
+    border-bottom: 2px solid #000;
+}
+
+.popup__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.popup__menu-button {
+    background-color: #F9F9F9;
+    border-radius: 6px;
+    background-image: url(../../images/profile.svg);
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 13px;
+}
+
+.popup__navlink_last {
+    margin: 0;
+    padding: 0;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .popup__container {
+        width: 520px;
+    }
+
+    .popup__close-button {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+
+    .popup__navlink {
+        padding-bottom: 4px;
+        margin-bottom: 24px;
+    }
+
+    .popup__navlink_last {
+        margin: 0;
+        padding: 0;
+    }
+
+    .popup__navigation {
+        margin-top: 159px;
+    }
+
+    .popup__profile {
+        margin-bottom: 92px;
+    }
+
+    .popup__account {
+        text-align: center;
+    }
+
+}

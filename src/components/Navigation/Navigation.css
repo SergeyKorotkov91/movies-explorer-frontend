@@ -1,0 +1,149 @@
+.navigation {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.navigation__link {
+    color: #000;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    text-decoration: none;
+    margin-right: 14px;
+}
+
+.navigation__link:last-child{
+    margin-right: 0;
+}
+
+.navigation__link:hover {
+    opacity: 0.7;
+}
+
+.navigation__entrance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    height: 26px;
+    min-width: 54px;
+    border-radius: 3px;
+    color: #FFF;
+}
+
+.navigation__menu {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navigation__navlink {
+    color: #000;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+.navigation__navlink:first-of-type {
+    margin-right: 20px;
+}
+
+.navigation__navlink_active {
+    font-weight: 500;
+}
+
+.navigation__profile {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.navigation__menu-button {
+    background-color: #F9F9F9;
+    border-radius: 6px;
+    background-image: url(../../images/profile.svg);
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.menu-burger {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: block;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.menu-burger:hover{
+    opacity: 0.7;
+}
+
+.menu-burger span,
+.menu-burger:after,
+.menu-burger:before {
+    height: 3px;
+    width: 22px;
+    position: absolute;
+    background: black;
+    margin: 0;
+}
+
+.menu-burger span {
+    top: 20px;
+}
+
+.menu-burger:after,
+.menu-burger:before {
+    content: '';
+}
+
+.menu-burger:after {
+    bottom: 12px;
+}
+
+.menu-burger:before {
+    top: 10px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .navigation {
+        display: flex;
+        align-items: center;
+        margin-right: 0;
+    }
+
+    .navigation__entrance {
+        height: 32px;
+        min-width: 76px;
+    }
+
+    .navigation__link {
+        margin-right: 30px;
+        font-size: 12px;
+    }
+
+    .navigation__link:last-child{
+        margin-right: 0;
+    }
+    
+    .menu-burger {
+        margin-right: 12px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .navigation__menu {
+        display: flex;
+    }
+
+    .menu-burger {
+        display: none;
+    }
+}

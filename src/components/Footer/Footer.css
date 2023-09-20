@@ -1,0 +1,133 @@
+.footer {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 58px;
+    margin-bottom: 20px;
+}
+
+.footer__title {
+    color: #A0A0A0;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 21px;
+}
+
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 26px;
+}
+
+.footer__info {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 18px;
+    list-style: none;
+}
+
+.footer__element{
+    margin-bottom: 9px;
+}
+
+.footer__yandex {
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 12px;
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 30px;
+    text-decoration: none;
+    color: black;
+}
+
+.footer__yandex:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.footer__git {
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+}
+
+.footer__git:hover{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.footer__date {
+    color: #A0A0A0;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .footer {
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 78px;
+    }
+    
+    .footer__title {
+        font-size: 13px;
+        padding-bottom: 20px;
+    }
+    
+    .footer__container {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .footer__info {
+        order: 1;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .footer__yandex {
+        font-size: 13px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 20px;
+    }
+    
+    .footer__git {
+        font-size: 13px;
+    }
+    
+    .footer__date {
+        order: -1;
+        color: black;
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .footer {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+    
+    .footer__date {
+        font-size: 13px;
+    }
+}
