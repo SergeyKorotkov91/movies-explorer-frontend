@@ -1,0 +1,138 @@
+.techs {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.techs__title {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin-top: 70px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #000;
+    text-align: left;
+    font-weight: normal;
+}
+
+.techs__subtitle {
+    margin: 0;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 60px;
+    margin-bottom: 24px;
+}
+
+.techs__description {
+    text-align: center;
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0;
+    margin-bottom: 50px;
+}
+
+.techs__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 178px;
+    margin-bottom: 70px;
+    padding: 0;
+}
+
+.techs__item {
+    background-color: #E8E8E8;
+    width: 84px;
+    height: 57px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: -0.48px;
+}
+
+@media screen and (min-width: 768px) {
+    .techs {
+        padding-left: 50px;
+        padding-right: 50px;
+        background-color: #F5F5F5;
+    }
+
+    .techs__title {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.88px;
+        padding-top: 90px;
+        padding-bottom: 23px;
+    }
+
+    .techs__subtitle {
+        font-size: 50px;
+        letter-spacing: -2px;
+        line-height: 58px;
+        margin-top: 80px;
+        margin-bottom: 22px;
+    }
+
+    .techs__description {
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 83px;
+        width: 460px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        letter-spacing: -0.48px;
+    }
+
+    .techs__grid {
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        margin-left: auto;
+        margin-right: auto;
+        width: 648px;
+        padding-bottom: 90px;
+        margin-bottom: 0;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+    .techs {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    .techs__title {
+        padding-top: 100px;
+    }
+
+    .techs__subtitle {
+        margin-top: 90px;
+        margin-bottom: 26px;
+    }
+
+    .techs__description {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 100px;
+    }
+
+    .techs__grid {
+        width: 690px;
+        padding-bottom: 100px;
+    }
+
+    .techs__item {
+        background-color: #E8E8E8;
+        width: 90px;
+    }
+}
