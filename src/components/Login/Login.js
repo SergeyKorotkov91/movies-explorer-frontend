@@ -1,7 +1,7 @@
 import './Login.css'
 import Form from '../Form/Form'
 
-const Login = ({serverError}) => {
+const Login = ({serverError, onLogin}) => {
     return (
         <main className="login">
             <Form
@@ -17,7 +17,6 @@ const Login = ({serverError}) => {
                         minLength: '5',
                         maxLength: '30',
                         title: 'E-mail',
-                        value: 'pochta@yandex.ru',
                     },
                     {
                         key: 1,
@@ -33,6 +32,7 @@ const Login = ({serverError}) => {
                 navText="Регистрация"
                 navLink="/signup"
                 serverError={serverError}
+                onSubmit={onLogin}
             >
 
             </Form>
@@ -40,5 +40,6 @@ const Login = ({serverError}) => {
 
     );
 }
+
 
 export default Login;

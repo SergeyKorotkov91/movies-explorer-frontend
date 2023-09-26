@@ -1,7 +1,7 @@
 import './Register.css'
 import Form from '../Form/Form'
 
-const Register = ({ serverError}) => {
+const Register = ({ serverError, onRegister }) => {
 
     return (
         <main className="register">
@@ -18,7 +18,6 @@ const Register = ({ serverError}) => {
                         minLength: '2',
                         maxLength: '30',
                         title: 'Имя',
-                        value: 'Виталий',
                         placeholder: 'Имя',
                         error: ''
                     },
@@ -30,7 +29,6 @@ const Register = ({ serverError}) => {
                         minLength: '5',
                         maxLength: '30',
                         title: 'E-mail',
-                        value: 'pochta@yandex.ru',
                         placeholder: 'E-mail',
                         error: ''
                     },
@@ -50,6 +48,7 @@ const Register = ({ serverError}) => {
                 navText="Войти"
                 navLink="/signin"
                 serverError={serverError}
+                onSubmit={onRegister}
             >
 
             </Form>

@@ -1,34 +1,29 @@
 import './Profile.css';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useCallback, useContext, useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useFormValidation } from '../../utils/useFormValidation';
 
-const Profile = () => {
+const Profile = ({ onSignout, onUpdate }) => {
+    const currentUser = useContext(CurrentUserContext);
+    const { values, errors, isValid, handleChange, resetForm } = useFormValidation();
 
-    const [isAble, setIsAble] = useState(true);
-    const [isHidden, setIsHidden] = useState(false);
+    const [isEditingMode, setIsEditingMode] = useState(false);
 
-    function handleSubmit(e){
+    const onSubmit = useCallback(async (e) => {
         e.preventDefault();
-    }
 
-    function handleEditClick(e){
-        e.preventDefault();
-        setIsAble(!isAble);
-        setIsHidden(!isHidden);
-    }
-
-    function handleSaveClick(e){
-        e.preventDefault();
-        setIsAble(!isAble);
-        setIsHidden(!isHidden);
-    }
+        onUpdate({
+            name: e.target.elements.name.value,
+            email: e.target.elements.email.value,
+        });
+    }, [onUpdate]);
 
     return (
         <main className="profile">
             <section className="profile__container">
 
-                <h1 className="profile__title">Привет, Виталий!</h1>
-                <form className="profile__form" onSubmit={handleSubmit}>
+                <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+                <form className="profile__form" onSubmit={onSubmit}>
                     <fieldset className="profile__info">
                         <div className="profile__container-form">
                             <label className="profile__label">Имя</label>
@@ -40,9 +35,9 @@ const Profile = () => {
                                 placeholder="Имя"
                                 minLength="2"
                                 maxLength="30"
-                                defaultValue="Виталий"
+                                defaultValue={currentUser.name}
                                 required
-                                disabled={isAble}
+                                disabled={!isEditingMode}
                             ></input>
                         </div>
                         <div className="profile__container-form">
@@ -53,17 +48,17 @@ const Profile = () => {
                                 name="email"
                                 type="email"
                                 placeholder="Email"
-                                defaultValue="pochta@yandex.ru"
-                                disabled={isAble}
+                                defaultValue={currentUser.email}
+                                disabled={!isEditingMode}
                             ></input>
                         </div>
 
                     </fieldset>
-                    <div className="profile__buttons" >
-                        <button className="profile__edit-button" type='button' onClick={handleEditClick} hidden={isHidden}>Редактировать</button>
-                        <NavLink className="profile__signout-button" hidden={isHidden} to='/'>Выйти из аккаунта</NavLink>
+                    <div className="profile__buttons">
+                        <button className="profile__edit-button" type='button' onClick={() => setIsEditingMode(true)} hidden={isEditingMode}>Редактировать</button>
+                        <button className="profile__signout-button" hidden={isEditingMode} type="button" to='/' onClick={onSignout}>Выйти из аккаунта</button>
                     </div>
-                    <button className="profile__save-button" type='submit' onClick={handleSaveClick} hidden={!isHidden}>Сохранить</button>
+                    <button className="profile__save-button" type='submit' hidden={!isEditingMode}>Сохранить</button>
                 </form>
             </section>
 

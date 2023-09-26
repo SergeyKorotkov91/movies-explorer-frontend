@@ -1,71 +1,53 @@
-import './MoviesCardList.css';
-import MoviesCard from '../MoviesCard/MoviesCard';
-import { useState, useEffect } from 'react';
-import cards from './cards'
+import "./MoviesCardList.css";
+import MovieCard from "../MovieCard/MovieCard";
+import { useState, useEffect, useCallback } from "react";
 
-const MoviesCardList = ({ isSaved }) => {
+const computeMinimumAmountOfMovies = () => (
+  window.innerWidth >= 1024 ? 12 :
+  window.innerWidth >= 768 ? 8 :
+  5
+);
 
-  const [amountOfCards, setAmountOfCards] = useState(12);
-  const [isAllCards, setIsAllCards] = useState(false);
-
-  function setInitialNumber() {
-    const windowWidth = window.innerWidth;
-
-    if (windowWidth >= 1024) {
-      setAmountOfCards(12)
-    };
-    if ((windowWidth >= 768) && (windowWidth < 1024)) {
-      setAmountOfCards(8)
-    };
-    if (windowWidth < 768) {
-      setAmountOfCards(5)
-    };
-
-  }
-
-  function addCards() {
-
-    setAmountOfCards(amountOfCards + 3);
-  }
-
-  function checkIsAllCards() {
-
-    cards.length < amountOfCards
-      ?
-      setIsAllCards(true)
-      :
-      setIsAllCards(false)
-
-  }
+const MoviesCardList = ({ mode, movies, saveMovie, unsaveMovie, searchQuery }) => {
+  const [amountOfMovies, setAmountOfMovies] = useState(computeMinimumAmountOfMovies());
 
   useEffect(() => {
+    setAmountOfMovies(computeMinimumAmountOfMovies());
+  }, [searchQuery]);
 
-    checkIsAllCards();
 
-  })
+  const fetchMoreMovies = useCallback(() => setAmountOfMovies((amountOfMovies) =>
+    window.innerWidth >= 1024 ? amountOfMovies + 3 :
+    window.innerWidth >= 768 ? amountOfMovies + 2 :
+    amountOfMovies + 2
+  ), []);
 
   useEffect(() => {
-
-    setInitialNumber()
-
-  }, [])
+    if (mode === 'all') {
+      const cb = setAmountOfMovies((amountOfMovies) => Math.max(amountOfMovies, computeMinimumAmountOfMovies()));
+      window.addEventListener('resize', cb);
+      return () => window.removeEventListener('resize', cb);
+    }
+  }, [mode]);
 
   return (
     <section className="cards">
       <ul className="cards__list">
-        {cards.slice(0, amountOfCards).map((film) => (
-          <li className="cards__element" key={film.id}>
-            <MoviesCard
-              key={film.id}
-              film={film}
-              isSaved={isSaved}
-            />
+        {movies.slice(0, amountOfMovies).map((movie) => (
+          <li className="cards__element" key={movie.id}>
+            <MovieCard key={movie.id} movie={movie} mode={mode} save={() => saveMovie(movie)} unsave={() => unsaveMovie(movie)} />
           </li>
         ))}
       </ul>
 
-      <button className="cards__more" type="button" onClick={addCards} hidden={isAllCards}>Ещё</button>
-
+      <button
+        className="cards__more"
+        type="button"
+        onClick={fetchMoreMovies}
+        hidden={amountOfMovies >= movies.length}
+      >
+        Ещё
+      </button>
     </section>
   );
 };
