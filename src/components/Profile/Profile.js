@@ -23,8 +23,6 @@ const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode, succes
 
   const isEditingMode = mode !== PROFILE_MODE.viewing;
 
-  const error = serverError || errors.name || errors.email;
-
   return (
     <main className="profile">
       <section className="profile__container">
@@ -46,6 +44,7 @@ const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode, succes
                 required
                 disabled={!isEditingMode}
               />
+              <span className="profile__input-error-message">{errors.name || ''}</span>
             </div>
             <div className="profile__container-form">
               <label className="profile__label">E-mail</label>
@@ -59,14 +58,15 @@ const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode, succes
                 onChange={handleChange}
                 disabled={!isEditingMode}
               />
+              <span className="profile__input-error-message">{errors.email || ''}</span>
             </div>
           </fieldset>
 
-          {error && <p className="profile__error-message">{error}</p>}
-          
-          {successMessage && <p className="profile__message">{successMessage}</p>}
-
           <div className="profile__buttons">
+
+            {serverError && <p className="profile__message_error">{serverError}</p>}
+            {successMessage && <p className="profile__message">{successMessage}</p>}
+
             <button className="profile__edit-button" type="button" onClick={startEditingProfile} hidden={isEditingMode}>
               Редактировать
             </button>
@@ -74,9 +74,8 @@ const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode, succes
             <button className="profile__signout-button" hidden={isEditingMode} type="button" to="/" onClick={onSignout}>
               Выйти из аккаунта
             </button>
-          </div>
 
-          <button
+            <button
             className="profile__save-button"
             type="submit"
             hidden={mode === PROFILE_MODE.viewing}
@@ -85,9 +84,11 @@ const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode, succes
                 mode === PROFILE_MODE.saving ||
                 (currentUser.name === values.name && currentUser.email === values.email),
             )}
-          >
-            Сохранить
-          </button>
+            >
+              Сохранить
+            </button>
+
+          </div>
         </form>
       </section>
     </main>
