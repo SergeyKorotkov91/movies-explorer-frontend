@@ -1,23 +1,31 @@
-import "./SearchForm.css";
-import lens from "../../images/icon.svg";
-import { useCallback } from "react";
+import './SearchForm.css';
+import lens from '../../images/icon.svg';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-const SearchForm = ({ onSearch }) => {
-  const search = useCallback((form) => {
-    onSearch({
-        short: !form.elements.short.checked,
-        text: form.elements.text.value
-    });
-  }, [onSearch]);
+const SearchForm = ({ onSearch, searchQuery, mode }) => {
+  const [text, setText] = useState(searchQuery.text);
+  const [short, setShort] = useState(searchQuery.short);
+  useEffect(() => {
+    setText(searchQuery.text);
+    setShort(searchQuery.short);
+  }, [searchQuery, mode]);
 
-  const onShortToggle = useCallback((e) => {
-    search(e.target.form);
-  }, [search]);
+  const shortRef = useRef();
+  shortRef.current = short;
+  const textRef = useRef();
+  textRef.current = text;
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    search(e.target);
-  }, [search]);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      onSearch({ short: shortRef.current, text: textRef.current });
+    },
+    [onSearch],
+  );
+
+  useEffect(() => {
+    onSearch({ short, text: textRef.current });
+  }, [onSearch, short]);
 
   return (
     <section>
@@ -28,8 +36,8 @@ const SearchForm = ({ onSearch }) => {
             className="search__input"
             placeholder="Фильм"
             type="text"
-            defaultValue=""
-            name="text"
+            value={text}
+            onInput={useCallback((e) => setText(e.target.value), [])}
           />
           <button type="submit" className="search__button">
             Найти
@@ -37,7 +45,12 @@ const SearchForm = ({ onSearch }) => {
         </div>
         <div className="search__short-films">
           <label className="search__label">
-            <input className="search__checkbox" type="checkbox" name="short" defaultChecked={true} onInput={onShortToggle}/>
+            <input
+              className="search__checkbox"
+              type="checkbox"
+              checked={!short}
+              onChange={useCallback((e) => setShort(!e.target.checked), [])}
+            />
             <span className="search__ellipse" />
           </label>
           <p className="search__type">Короткометражки</p>

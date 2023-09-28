@@ -1,47 +1,47 @@
 class MoviesApi {
-    constructor(config) {
-        this._url = config.url;
-        this._movies = null;
+  constructor(config) {
+    this._url = config.url;
+    this._movies = null;
+  }
+
+  async _fetchAll() {
+    if (this._movies) {
+      return;
     }
 
-    async _fetchAll() {
-        if (this._movies) {
-            return;
-        }
-
-        const res = await fetch(`${this._url}/beatfilm-movies`, {method: 'GET'});
-        if (!res.ok) {
-            return Promise.reject(res.status);
-        }
-
-        this._movies = (await res.json()).map((movie) => ({
-            _: {...movie, movieId: movie.id},
-            id: movie.id,
-            name: movie.nameRU,
-            duration: movie.duration,
-            trailerLink: movie.trailerLink,
-            image: `https://api.nomoreparties.co${movie.image.url}`,
-            thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-        }));
+    const res = await fetch(`${this._url}/beatfilm-movies`, { method: 'GET' });
+    if (!res.ok) {
+      return Promise.reject(res.status);
     }
 
-    async search({text, short} = {}) {
-        await this._fetchAll();
+    this._movies = (await res.json()).map((movie) => ({
+      _: { ...movie, movieId: movie.id },
+      id: movie.id,
+      name: movie.nameRU,
+      duration: movie.duration,
+      trailerLink: movie.trailerLink,
+      image: `https://api.nomoreparties.co${movie.image.url}`,
+      thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+    }));
+  }
 
-        let filtered = this._movies;
+  async search({ text, short } = {}) {
+    await this._fetchAll();
 
-        if (text) {
-            filtered = filtered.filter((x) => x.name.toLowerCase().includes(text.toLowerCase()));
-        }
+    let filtered = this._movies;
 
-        if (short) {
-            filtered = filtered.filter((x) => x.duration < 40);
-        }
-
-        return filtered;
+    if (text) {
+      filtered = filtered.filter((x) => x.name.toLowerCase().includes(text.toLowerCase()));
     }
+
+    if (short) {
+      filtered = filtered.filter((x) => x.duration < 40);
+    }
+
+    return filtered;
+  }
 }
 
-const moviesApi = new MoviesApi({url: 'https://api.nomoreparties.co'});
+const moviesApi = new MoviesApi({ url: 'https://api.nomoreparties.co' });
 
 export default moviesApi;
