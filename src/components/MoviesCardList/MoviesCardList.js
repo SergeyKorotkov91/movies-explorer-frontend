@@ -1,71 +1,66 @@
 import './MoviesCardList.css';
-import MoviesCard from '../MoviesCard/MoviesCard';
-import { useState, useEffect } from 'react';
-import cards from './cards'
+import MovieCard from '../MovieCard/MovieCard';
+import { useState, useEffect, useCallback } from 'react';
+import { MOVIES_CONFIG } from '../../utils/constants';
+import Preloader from '../Preloader/Preloader';
 
-const MoviesCardList = ({ isSaved }) => {
+const getDevice = () => (window.innerWidth >= 1024 ? 'desktop' : window.innerWidth >= 768 ? 'tablet' : 'mobile');
 
-  const [amountOfCards, setAmountOfCards] = useState(12);
-  const [isAllCards, setIsAllCards] = useState(false);
-
-  function setInitialNumber() {
-    const windowWidth = window.innerWidth;
-
-    if (windowWidth >= 1024) {
-      setAmountOfCards(12)
-    };
-    if ((windowWidth >= 768) && (windowWidth < 1024)) {
-      setAmountOfCards(8)
-    };
-    if (windowWidth < 768) {
-      setAmountOfCards(5)
-    };
-
-  }
-
-  function addCards() {
-
-    setAmountOfCards(amountOfCards + 3);
-  }
-
-  function checkIsAllCards() {
-
-    cards.length < amountOfCards
-      ?
-      setIsAllCards(true)
-      :
-      setIsAllCards(false)
-
-  }
+const MoviesCardList = ({ mode, movies, saveMovie, unsaveMovie, searchQuery }) => {
+  const [amountOfMovies, setAmountOfMovies] = useState(MOVIES_CONFIG[getDevice()].initial);
 
   useEffect(() => {
+    setAmountOfMovies(MOVIES_CONFIG[getDevice()].initial);
+  }, [searchQuery]);
 
-    checkIsAllCards();
-
-  })
+  const fetchMoreMovies = useCallback(
+    () => setAmountOfMovies((amountOfMovies) => amountOfMovies + MOVIES_CONFIG[getDevice()].more),
+    [],
+  );
 
   useEffect(() => {
+    if (mode === 'all') {
+      const cb = setAmountOfMovies((amountOfMovies) => Math.max(amountOfMovies, MOVIES_CONFIG[getDevice()].initial));
+      window.addEventListener('resize', cb);
+      return () => window.removeEventListener('resize', cb);
+    }
+  }, [mode]);
 
-    setInitialNumber()
+  if (!movies) {
+    return (
+      <section className="cards">
+        <Preloader />;
+      </section>
+    );
+  }
 
-  }, [])
+  if (movies.length === 0) {
+    return (
+      <section className="cards">
+        <p className="cards__search-error">По вашему запросу ничего не найдено</p>
+      </section>
+    );
+  }
 
   return (
     <section className="cards">
       <ul className="cards__list">
-        {cards.slice(0, amountOfCards).map((film) => (
-          <li className="cards__element" key={film.id}>
-            <MoviesCard
-              key={film.id}
-              film={film}
-              isSaved={isSaved}
+        {movies.slice(0, amountOfMovies).map((movie) => (
+          <li className="cards__element" key={movie.id}>
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              mode={mode}
+              save={() => saveMovie(movie)}
+              unsave={() => unsaveMovie(movie)}
             />
           </li>
         ))}
       </ul>
 
-      <button className="cards__more" type="button" onClick={addCards} hidden={isAllCards}>Ещё</button>
-
+      <button className="cards__more" type="button" onClick={fetchMoreMovies} hidden={amountOfMovies >= movies.length}>
+        Ещё
+      </button>
     </section>
   );
 };
