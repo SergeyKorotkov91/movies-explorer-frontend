@@ -5,7 +5,7 @@ import { useFormValidation } from '../../utils/useFormValidation';
 import { PROFILE_MODE } from '../../utils/constants';
 import { ServerErrorContext } from '../../contexts/ServerError';
 
-const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode }) => {
+const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode, successMessage }) => {
   const serverError = useContext(ServerErrorContext);
   const currentUser = useContext(CurrentUserContext);
   const { values, errors, isValid, handleChange, resetForm } = useFormValidation();
@@ -63,6 +63,8 @@ const Profile = ({ onSignout, onUpdateProfile, startEditingProfile, mode }) => {
           </fieldset>
 
           {error && <p className="profile__error-message">{error}</p>}
+          
+          {successMessage && <p className="profile__message">{successMessage}</p>}
 
           <div className="profile__buttons">
             <button className="profile__edit-button" type="button" onClick={startEditingProfile} hidden={isEditingMode}>

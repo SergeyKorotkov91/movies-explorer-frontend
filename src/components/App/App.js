@@ -16,6 +16,7 @@ import mainApi from '../../utils/MainApi';
 import Preloader from '../Preloader/Preloader';
 import moviesApi from '../../utils/MoviesApi';
 import { EMPTY_QUERY, MOVIES_MODE, PROFILE_MODE, USER_TYPE } from '../../utils/constants';
+import { SUCCESS_PROFILE_MESSAGE } from '../../utils/constants';
 import { ServerErrorContext } from '../../contexts/ServerError';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   const [isLogining, setIsLogining] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [serverError, setServerError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [profileMode, setProfileMode] = useState(PROFILE_MODE.viewing);
 
   useEffect(() => {
@@ -83,6 +85,8 @@ function App() {
       const user = await mainApi.updateUser(data);
       setUser({ type: USER_TYPE.loggedIn, user });
       setProfileMode(PROFILE_MODE.viewing);
+      setSuccessMessage(SUCCESS_PROFILE_MESSAGE);
+      setTimeout(() => setSuccessMessage(''), 3000);
     } catch (err) {
       setServerError(err.message);
     }
@@ -214,6 +218,7 @@ function App() {
                   onSignout={onSignout}
                   onUpdateProfile={onUpdateProfile}
                   mode={profileMode}
+                  successMessage={successMessage}
                   startEditingProfile={startEditingProfile}
                 />,
               )}

@@ -121,7 +121,12 @@
 
 .profile__error-message {
   color: #ff4062;
-  margin: 20px auto;
+  margin: 16px auto;
+}
+
+.profile__message {
+  color: black;
+  margin: 16px auto;
 }
 
 @media screen and (min-width: 768px) {

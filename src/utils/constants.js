@@ -21,4 +21,7 @@ export const PROFILE_MODE = {
   saving: 'saving',
 };
 
+export const SUCCESS_PROFILE_MESSAGE = 'Сохранение прошло успешно';
+
 export const EMPTY_QUERY = { text: '', short: false };
+
